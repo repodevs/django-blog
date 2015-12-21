@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 def home(request):
-	post = Post.objects.all()[:10]
+	post = Post.objects.all().order_by('-id')
 	data = {
 		'article' : post
 	}

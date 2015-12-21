@@ -41,6 +41,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'tinymce',
     'article',
+
+    #rest framework
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -88,7 +91,7 @@ WSGI_APPLICATION = 'myblog.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-'''
+# '''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -99,9 +102,9 @@ DATABASES = {
         'PORT': ''
     }
 }
-'''
+# '''
 # DATABASES['default'] =  dj_database_url.config()
-DATABASES = {'default': dj_database_url.config()}
+# DATABASES = {'default': dj_database_url.config()}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -130,3 +133,14 @@ STATICFILES_DIRS = (
 # TEMPLATE_DIRS = (
 #     location('templates'),
 # )
+
+DJANGO_SETTINGS_MODULE = 'testtinymce.settings'
+
+#rest framework
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
