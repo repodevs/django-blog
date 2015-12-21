@@ -1,6 +1,7 @@
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from article.models import Category, Post
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from rest_framework import routers, serializers, viewsets
 from .serializers import PostSerializer, CategorySerializer
@@ -8,11 +9,28 @@ from .serializers import PostSerializer, CategorySerializer
 # Create your views here.
 
 def list_article(request):
-	post = Post.objects.all().order_by('-id')
+	# post = Post.objects.all().order_by('-id')
+	# data = {
+	# 	'article' : post
+	# }
+	# return render_to_response('index.html', data, context_instance = RequestContext(request))
+
+	list_post = Post.objects.all().order_by('-id')
+	paginator = Paginator(list_post, 5)
+	page = request.GET.get('page')
+
+	try:
+		pages = paginator.page(page)
+	except PageNotAnInteger:
+		pages = paginator.page(1)
+	except:
+		pages = paginator.page(paginator.num_pages)
+
 	data = {
-		'posts' : post
+		'article' : pages
 	}
-	return render_to_response('sitemap.html', data, context_instance=RequestContext(request))
+
+	return render(request, 'index.html', data)
 
 def detail(request, slug):
 	post = Post.objects.get(slug=slug)

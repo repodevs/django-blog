@@ -45,7 +45,7 @@ router.register(r'categories', CategoryViewSet)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-	url(r'^$', 'myblog.views.home', name='home'),
+	url(r'^$', 'article.views.list_article', name='home'),
     url(r'^list/', 'article.views.list_article', name='list'),
 	url(r'^detail/(?P<slug>[\w-]+)$', 'article.views.detail', name='article_detail'),
 	url(r'^author/(?P<creator>[\w-]+)$', 'account.views.author', name='author'),
