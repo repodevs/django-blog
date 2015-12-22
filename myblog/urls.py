@@ -43,17 +43,24 @@ router.register(r'users', UserViewSet)
 router.register(r'posts', PostViewSet)
 router.register(r'categories', CategoryViewSet)
 
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 	url(r'^$', 'article.views.list_article', name='home'),
     url(r'^list/', 'article.views.list_article', name='list'),
 	url(r'^detail/(?P<slug>[\w-]+)$', 'article.views.detail', name='article_detail'),
 	url(r'^author/(?P<creator>[\w-]+)$', 'account.views.author', name='author'),
-    url(r'^category/(?P<pk>[\w-]+)$', 'article.views.category_detail', name='category-detail'),
+
+    # url(r'^category/(?P<pk>[\w-]+)$', 'article.views.category_detail', name='category-detail'),
+    # url(r'^category/(?P<pk>[\w-]+)$', CategoryViewSet.as_view(), name='category-detail'),
 
     url(r'^tinymce/', include('tinymce.urls')),
 
     # rest framework
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+
+    # rest swagger
+    url(r'^docs/', include('rest_framework_swagger.urls')),
+
 ]

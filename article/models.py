@@ -7,7 +7,7 @@ from datetime import datetime
 # Create your models here.
  
 class Category(models.Model):
-    name = models.CharField(max_length=255, null=True)
+    name = models.CharField(max_length=255, null=False)
     description = models.TextField(blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
@@ -16,7 +16,7 @@ class Category(models.Model):
         verbose_name_plural = "Category"
  
     def __unicode__(self):
-        return self.name
+        return unicode(self.name) or u''
  
 class Post(models.Model):
 

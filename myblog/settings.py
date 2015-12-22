@@ -44,6 +44,9 @@ INSTALLED_APPS = (
 
     #rest framework
     'rest_framework',
+
+    # restswagger
+    'rest_framework_swagger',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -143,4 +146,39 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
+}
+
+
+## REST API SWAGGER ##
+SWAGGER_SETTINGS = {
+    'exclude_namespaces': [],
+    'api_version': '0.1',
+    'api_path': '/',
+    'enabled_methods': [
+        'get',
+        'post',
+        'patch',
+        'delete'
+    ],
+    'api_key': '',
+    'is_authenticated': False,
+    'is_superuser': False,
+    'permission_denied_handler': None,
+    'resource_access_handler': None,
+    # 'base_path':'localhost:8000/docs', //auto add if commented
+    'info': {
+        'contact': 'repopamor@gmail.com',
+        'description': 'Simple dokumentasi untuk Aplikasi My Blog :)'
+                        'Login terlebih dahulu sebelum menggunakanya :D',
+        # 'license': 'Apache 2.0',
+        # 'licenseUrl': 'http://www.apache.org/licenses/LICENSE-2.0.html',
+        # 'termsOfServiceUrl': 'http://repodev.pondokprogrammer.com/',
+        'title': 'My Blog API',
+    },
+    'doc_expansion': 'none',
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',),
+    'PAGE_SIZE': 10
 }
