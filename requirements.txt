@@ -45,7 +45,7 @@ gyp==0.1
 hijra==0.1
 html5lib==0.999
 httpie==0.8.0
-httplib2==0.8
+httplib2==0.18.0
 itsdangerous==0.24
 jsonschema==2.5.1
 lockfile==0.8
